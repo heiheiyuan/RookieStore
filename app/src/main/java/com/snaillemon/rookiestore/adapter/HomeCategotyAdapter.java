@@ -1,5 +1,4 @@
 package com.snaillemon.rookiestore.adapter;
-
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -8,13 +7,15 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.nineoldandroids.animation.Animator;
+import com.nineoldandroids.animation.AnimatorListenerAdapter;
+import com.nineoldandroids.animation.ObjectAnimator;
 import com.snaillemon.rookiestore.R;
 import com.snaillemon.rookiestore.bean.Campaign;
 import com.snaillemon.rookiestore.bean.HomeCampaign;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
-
 /**
  * Created by GoodBoy on 9/24/2016.
  */
@@ -25,12 +26,11 @@ public class HomeCategotyAdapter extends RecyclerView.Adapter<HomeCategotyAdapte
     private static int VIEW_TYPE_L = 0;
     private static int VIEW_TYPE_R = 1;
     private OnCampaignClickListener mListener;
-
     public HomeCategotyAdapter(List<HomeCampaign> data, Context context) {
         mData = data;
         this.mContext = context;
     }
-    private void setOnCampaignClickListener(OnCampaignClickListener listener) {
+    public void setOnCampaignClickListener(OnCampaignClickListener listener) {
         mListener = listener;
     }
     @Override
@@ -53,6 +53,13 @@ public class HomeCategotyAdapter extends RecyclerView.Adapter<HomeCategotyAdapte
     public int getItemCount() {
         return mData.size();
     }
+    @Override
+    public int getItemViewType(int position) {
+        if (position % 2 == 0) {
+            return VIEW_TYPE_R;
+        }else
+            return VIEW_TYPE_L;
+    }
     class ViewHoler extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView textTitle;
         ImageView imageViewRight;
@@ -74,9 +81,27 @@ public class HomeCategotyAdapter extends RecyclerView.Adapter<HomeCategotyAdapte
                 animator(v);
             }
         }
-    }
-    private void animator(View v) {
-
+        private void animator(final View v) {
+            ObjectAnimator animator = ObjectAnimator.ofFloat(v, "rotationX", 0.0F, 360.0F).setDuration(200);
+            animator.addListener(new AnimatorListenerAdapter() {
+                @Override
+                public void onAnimationEnd(Animator animation) {
+                    HomeCampaign homeCampaign = mData.get(getLayoutPosition());
+                    switch (v.getId()) {
+                        case R.id.home_right_iv:
+                            mListener.onClick(v,homeCampaign.getCpOne());
+                            break;
+                        case R.id.home_top_iv:
+                            mListener.onClick(v,homeCampaign.getCpTwo());
+                            break;
+                        case R.id.home_bottom_iv:
+                            mListener.onClick(v,homeCampaign.getCpThree());
+                            break;
+                    }
+                }
+            });
+            animator.start();
+        }
     }
     public interface OnCampaignClickListener {
         void onClick(View view, Campaign campaign);

@@ -1,6 +1,8 @@
 package com.snaillemon.rookiestore.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,8 +14,11 @@ import com.daimajia.slider.library.SliderTypes.BaseSliderView;
 import com.daimajia.slider.library.SliderTypes.TextSliderView;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.snaillemon.rookiestore.R;
+import com.snaillemon.rookiestore.WareListActivity;
 import com.snaillemon.rookiestore.adapter.HomeCategotyAdapter;
+import com.snaillemon.rookiestore.adapter.decoration.CardViewItemDecoration;
 import com.snaillemon.rookiestore.bean.Banner;
+import com.snaillemon.rookiestore.bean.Campaign;
 import com.snaillemon.rookiestore.bean.Contants;
 import com.snaillemon.rookiestore.bean.HomeCampaign;
 import com.snaillemon.rookiestore.http.BaseCallback;
@@ -66,11 +71,20 @@ public class HomeFragment extends BaseFragment{
             }
         });
     }
-
     private void initData(List<HomeCampaign> homeCampaigns) {
         mAdapter = new HomeCategotyAdapter(homeCampaigns, getActivity());
+        mAdapter.setOnCampaignClickListener(new HomeCategotyAdapter.OnCampaignClickListener() {
+            @Override
+            public void onClick(View view, Campaign campaign) {
+                Intent intent = new Intent(getActivity(), WareListActivity.class);
+                intent.putExtra(Contants.COMPAINGAIN_ID,campaign.getId());
+                startActivity(intent);
+            }
+        });
+        mRecyclerView.setAdapter(mAdapter);
+        mRecyclerView.addItemDecoration(new CardViewItemDecoration());
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(this.getActivity()));
     }
-
     private void requestImages() {
         String url ="http://112.124.22.238:8081/course_api/banner/query?type=1";
         httpHelper.get(url, new SpotsCallback<List<Banner>>(getContext()) {
