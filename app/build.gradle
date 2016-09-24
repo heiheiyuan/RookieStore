@@ -31,4 +31,7 @@ dependencies {
     compile 'com.google.code.gson:gson:2.7'
     compile 'com.squareup.okhttp:okhttp:2.7.5'
     compile 'com.github.d-max:spots-dialog:0.4@aar'
+    compile 'com.android.support:recyclerview-v7:24.2.1'
+    compile 'com.android.support:cardview-v7:24.2.1'
+    compile 'com.android.support:gridlayout-v7:24.2.1'
 }
