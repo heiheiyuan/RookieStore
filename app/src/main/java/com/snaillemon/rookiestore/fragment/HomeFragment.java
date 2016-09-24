@@ -12,8 +12,10 @@ import com.daimajia.slider.library.SliderTypes.BaseSliderView;
 import com.daimajia.slider.library.SliderTypes.TextSliderView;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.snaillemon.rookiestore.R;
+import com.snaillemon.rookiestore.adapter.HomeCategotyAdapter;
 import com.snaillemon.rookiestore.bean.Banner;
 import com.snaillemon.rookiestore.bean.Contants;
+import com.snaillemon.rookiestore.bean.HomeCampaign;
 import com.snaillemon.rookiestore.http.BaseCallback;
 import com.snaillemon.rookiestore.http.OkHttpHelper;
 import com.snaillemon.rookiestore.http.SpotsCallback;
@@ -33,6 +35,8 @@ public class HomeFragment extends BaseFragment{
     private RecyclerView mRecyclerView;
     private List<Banner> mBanners;
     private OkHttpHelper httpHelper = OkHttpHelper.getInstance();
+    private HomeCategotyAdapter mAdapter;
+
     @Override
     public View createVew(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_home,container,false);
@@ -43,36 +47,28 @@ public class HomeFragment extends BaseFragment{
         initRecyclerView();
     }
     private void initRecyclerView() {
-        httpHelper.get(Contants.API.CAMPAIGN_HOME, new BaseCallback() {
+        httpHelper.get(Contants.API.CAMPAIGN_HOME, new BaseCallback<List<HomeCampaign>>() {
             @Override
             public void onRequestBefore(Request request) {
-
             }
-
             @Override
             public void onFailure(Request request, IOException e) {
-
             }
-
             @Override
             public void onRepose(Response response) {
-
             }
-
             @Override
-            public void onSuccess(Response response, Object o) {
-                initData();
+            public void onSuccess(Response response, List<HomeCampaign> homeCampaigns) {
+                initData(homeCampaigns);
             }
-
             @Override
             public void onError(Response response, int code, Exception e) {
-
             }
         });
     }
 
-    private void initData() {
-
+    private void initData(List<HomeCampaign> homeCampaigns) {
+        mAdapter = new HomeCategotyAdapter(homeCampaigns, getActivity());
     }
 
     private void requestImages() {
