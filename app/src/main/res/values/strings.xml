@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">RookieStore</string>
+    <string name="home">主页</string>
+    <string name="hot">热卖</string>
+    <string name="category">分类</string>
+    <string name="cart">购物车</string>
+    <string name="mime">我的</string>
+    <string name="title_activity_ware_detail">WareDetailActivity</string>
+    <string name="share">分享</string>
+</resources>
