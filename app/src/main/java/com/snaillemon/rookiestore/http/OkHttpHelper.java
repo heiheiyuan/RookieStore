@@ -81,7 +81,6 @@ public class OkHttpHelper {
             }
         });
     }
-
     private void callbackError(final BaseCallback callback, final Response response, final Exception e) {
         mHandler.post(new Runnable() {
             @Override
@@ -90,7 +89,6 @@ public class OkHttpHelper {
             }
         });
     }
-
     private void callbackResponse(final BaseCallback callback, final Response response) {
         mHandler.post(new Runnable() {
             @Override
@@ -99,7 +97,6 @@ public class OkHttpHelper {
             }
         });
     }
-
     private void callbackFailure(final Request request, final BaseCallback callback, final IOException e) {
         mHandler.post(new Runnable() {
             @Override
@@ -108,7 +105,6 @@ public class OkHttpHelper {
             }
         });
     }
-
     //return get request
     private Request buildGetRequest(String url) {
         return buildRequest(url,HttpMethodType.GET,null);
