@@ -26,7 +26,6 @@ public abstract class BaseCallback<T> {
     }
     public abstract void onRequestBefore(Request request);
     public abstract void onFailure(Request request, IOException e);
-
     /**
      *call back this method when request successful
      * @param response
