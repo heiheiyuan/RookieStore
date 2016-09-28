@@ -2,7 +2,7 @@
 A electricity business project,continuous update...
 ok...
 This is a electricity business project which cost me 500RMB!!! 
-Just for finding a good job
+Just for finding a good job.
 If there are some bug or places you can make it better,please tell me!!!Thank you so much!
 --------------------------------------------------------------------------------------------
 菜鸟商城
