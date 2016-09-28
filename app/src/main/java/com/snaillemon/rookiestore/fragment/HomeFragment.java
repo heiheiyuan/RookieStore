@@ -105,7 +105,7 @@ public class HomeFragment extends BaseFragment{
                 TextSliderView textSliderView = new TextSliderView(getContext());
                 textSliderView.image(bander.getImgUrl());
                 textSliderView.description(bander.getName());
-                textSliderView.setScaleType(BaseSliderView.ScaleType.Fit);
+                textSliderView.setScaleType(BaseSliderView.ScaleType.CenterCrop);
                 mSliderLayout.addSlider(textSliderView);
             }
         }

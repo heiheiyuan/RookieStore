@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">RookieStore</string>
+    <string name="home">Home</string>
+    <string name="hot">Hot</string>
+    <string name="category">Category</string>
+    <string name="cart">Cart</string>
+    <string name="mime">Mine</string>
+    <string name="title_activity_ware_detail">WareDetailActivity</string>
+    <string name="share">Share</string>
+</resources>
