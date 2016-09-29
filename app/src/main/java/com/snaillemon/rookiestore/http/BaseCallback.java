@@ -12,7 +12,7 @@ import java.lang.reflect.Type;
  * Created by GoodBoy on 9/23/2016.
  */
 public abstract class BaseCallback<T> {
-    Type mType;
+    public Type mType;
     static Type getSupercallTypeParameter(Class<?> subclass){
         Type superclass = subclass.getGenericSuperclass();
         if (superclass instanceof Class) {

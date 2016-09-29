@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="2dp"
+    android:layout_marginLeft="5dp"
+    android:layout_marginRight="5dp"
+    android:layout_marginTop="2dp"
+    app:cardBackgroundColor="#FFF"
+    app:contentPadding="10dp"
+    app:cardCornerRadius="4dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="3dp"
+        android:background="@drawable/selector_list_item">
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/drawee_view"
+            android:layout_width="@dimen/ware_img_width"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:background="@null"
+            app:viewAspectRatio = "1"
+            />
+        <TextView
+            android:id="@+id/hot_goods_title_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/drawee_view"
+            android:layout_marginLeft="5dp"
+            style="@style/ware_title"
+            android:text="联想笔记本"/>
+        <TextView
+            android:id="@+id/hot_goods_price_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@id/hot_goods_title_tv"
+            android:layout_alignParentBottom="true"
+            android:layout_marginTop="5dp"
+            android:text="$50"
+            style="@style/ware_price"
+            />
+        <Button
+            android:id="@+id/hot_buy_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignBottom="@id/hot_goods_price_tv"
+            style="@style/bigRedButton"
+            android:gravity="center"
+            android:text="@string/buy_it"/>
+    </RelativeLayout>
+</android.support.v7.widget.CardView>

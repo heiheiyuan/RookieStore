@@ -8,4 +8,5 @@
     <string name="mime">Mine</string>
     <string name="title_activity_ware_detail">WareDetailActivity</string>
     <string name="share">Share</string>
+    <string name="buy_it">get it!</string>
 </resources>

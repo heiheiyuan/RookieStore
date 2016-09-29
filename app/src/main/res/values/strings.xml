@@ -7,4 +7,5 @@
     <string name="mime">我的</string>
     <string name="title_activity_ware_detail">WareDetailActivity</string>
     <string name="share">分享</string>
+    <string name="buy_it">立即购买</string>
 </resources>

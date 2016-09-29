@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <com.snaillemon.rookiestore.widget.SlToolbar
+        android:id="@+id/hot_toolbar"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:isShowSearchView="true"/>
+    <com.cjj.MaterialRefreshLayout
+        android:id="@+id/hot_refresh"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:overlay="true"
+        app:wave_show="true"
+        app:wave_color="#90ffffff"
+        app:progress_colors="@array/material_colors"
+        app:wave_height_type="higher"
+        >
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/hot_recyclerview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </com.cjj.MaterialRefreshLayout>
+</LinearLayout>

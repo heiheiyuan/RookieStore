@@ -34,5 +34,57 @@
         <item name="android:layout_width">1dp</item>
         <item name="android:layout_height">match_parent</item>
     </style>
-
+    <style name="bigButton">
+        <item name="android:textSize">@dimen/bigButtonTextSize</item>
+        <item name="android:textColor">@color/selector_white_color</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingLeft">@dimen/largePadding</item>
+        <item name="android:paddingRight">@dimen/largePadding</item>
+        <item name="android:minHeight">@dimen/normalButtonHeight</item>
+    </style>
+    <style name="smallButton">
+        <item name="android:textSize">@dimen/smallButtonTextSize</item>
+        <item name="android:textColor">@color/selector_white_color</item>
+        <item name="android:gravity">center</item>
+        <item name="android:paddingLeft">@dimen/smallPadding</item>
+        <item name="android:paddingRight">@dimen/smallPadding</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:minWidth">@dimen/smallButtonWidth</item>
+        <item name="android:minHeight">@dimen/smallButtonHeight</item>
+    </style>
+    <style name="smallGreenButton" parent="@style/smallButton">
+        <item name="android:background">@drawable/bg_btn_style_green</item>
+    </style>
+    <style name="smallGreyButton" parent="@style/smallButton">
+        <item name="android:textColor">@color/grey_btn_text_color</item>
+        <item name="android:background">@drawable/bg_btn_style_grey</item>
+    </style>
+    <style name="smallRedButton" parent="@style/smallButton">
+        <item name="android:background">@drawable/bg_btn_style_red</item>
+    </style>
+    <style name="bigGreenButton" parent="@style/bigButton">
+        <item name="android:background">@drawable/bg_btn_style_green</item>
+    </style>
+    <style name="bigRedButton" parent="@style/bigButton">
+        <item name="android:background">@drawable/bg_btn_style_red</item>
+    </style>
+    <style name="bigGreyButton" parent="@style/bigButton">
+        <item name="android:textColor">@color/grey_btn_text_color</item>
+        <item name="android:background">@drawable/bg_btn_style_grey</item>
+    </style>
+    <style name="customCheckbox" parent="@android:style/Widget.CompoundButton.CheckBox">
+        <item name="android:button">@drawable/selector_checkbox</item>
+    </style>
+    <style name="ware_title">
+        <item name="android:textColor">@color/gray</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:maxLines">3</item>
+    </style>
+    <style name="ware_price">
+        <item name="android:textColor">@color/crimson</item>
+        <item name="android:textSize">22sp</item>
+    </style>
 </resources>
