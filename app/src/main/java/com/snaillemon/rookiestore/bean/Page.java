@@ -2,17 +2,15 @@ package com.snaillemon.rookiestore.bean;
 
 import java.util.List;
 
-import static android.icu.lang.UCharacter.GraphemeClusterBreak.T;
-
 /**
  * Created by GoodBoy on 9/29/2016.
  */
 
 public class Page<T> {
-    private int pageSize;
-    private int totalPage;
-    private int currPage;
     private int totalCount;
+    private int currentPage;
+    private int totalPage;
+    private int pageSize;
     private List<T> list;
 
     public List<T> getList() {
@@ -39,12 +37,12 @@ public class Page<T> {
         this.totalPage = totalPage;
     }
 
-    public int getCurrPage() {
-        return currPage;
+    public int getCurrentPage() {
+        return currentPage;
     }
 
-    public void setCurrPage(int currPage) {
-        this.currPage = currPage;
+    public void setCurrentPage(int currentPage) {
+        this.currentPage = currentPage;
     }
 
     public int getTotalCount() {

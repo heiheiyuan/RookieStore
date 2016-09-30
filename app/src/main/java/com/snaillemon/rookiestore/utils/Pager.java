@@ -203,7 +203,7 @@ public class Pager {
         }
         @Override
         public void onSuccess(Response response, Page<T> page) {
-            builder.pageIndex = page.getCurrPage();
+            builder.pageIndex = page.getCurrentPage();
             builder.totalPage = page.getTotalPage();
             builder.pageSize = page.getPageSize();
             showData(page.getList(),page.getTotalPage(),page.getTotalCount());
