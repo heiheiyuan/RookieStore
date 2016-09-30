@@ -20,7 +20,6 @@ public class HWAdpater extends SimpleAdapter<Wares>{
     public HWAdpater(Context context,List<Wares> list) {
         super(context, R.layout.template_hot_cardview, list);
     }
-
     @Override
     protected void convert(BaseViewHolder holder, Wares item) {
         SimpleDraweeView draweeView = (SimpleDraweeView) holder.getView(R.id.drawee_view);

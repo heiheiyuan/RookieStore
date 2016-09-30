@@ -2,7 +2,6 @@ package com.snaillemon.rookiestore.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -24,8 +23,6 @@ import com.snaillemon.rookiestore.utils.Pager;
 
 import java.util.List;
 
-import static android.R.attr.data;
-
 /**
  * Created by prince on 2016/9/19.
  */
@@ -34,7 +31,7 @@ public class HotFragment extends BaseFragment implements Pager.OnPageListener<Wa
     private RecyclerView mRecyclerView;
     @ViewInject(R.id.hot_refresh)
     private MaterialRefreshLayout mRefreshView;
-    private HWAdpater mAdpater;
+    private HWAdpater mAdapter;
 
     @Override
     public void init() {
@@ -55,17 +52,17 @@ public class HotFragment extends BaseFragment implements Pager.OnPageListener<Wa
 
     @Override
     public void load(List<Wares> datas, int totalPage, int totalCount) {
-        mAdpater = new HWAdpater(getContext(), datas);
-        mAdpater.setOnItemClickListener(new BaseAdapter.OnItemClickListener() {
+        mAdapter = new HWAdpater(getContext(), datas);
+        mAdapter.setOnItemClickListener(new BaseAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                Wares wares = mAdpater.getItem(position);
+                Wares wares = mAdapter.getItem(position);
                 Intent intent = new Intent(getActivity(), WaresDetailsActivity.class);
                 intent.putExtra(Contants.WARE,wares);
                 startActivity(intent);
             }
         });
-        mRecyclerView.setAdapter(mAdpater);
+        mRecyclerView.setAdapter(mAdapter);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
         //        mRecyclerView.addItemDecoration(new DividerItemDecoration(getContext(),DividerItemDecoration.VERTICAL_LIST));
@@ -73,13 +70,13 @@ public class HotFragment extends BaseFragment implements Pager.OnPageListener<Wa
 
     @Override
     public void refresh(List<Wares> datas, int totalPage, int totalCount) {
-        mAdpater.refreshDatas(datas);
+        mAdapter.refreshDatas(datas);
         mRecyclerView.scrollToPosition(0);
     }
 
     @Override
     public void loadMore(List<Wares> datas, int totalPage, int totalCount) {
-        mAdpater.loadMore(datas);
-        mRecyclerView.scrollToPosition(mAdpater.getDatas().size());
+        mAdapter.loadMore(datas);
+        mRecyclerView.scrollToPosition(mAdapter.getDatas().size());
     }
 }

@@ -3,7 +3,7 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
 
-    <dimen name="buttonCornerSize">2.0dip</dimen>
+    <dimen name="buttonCornerSize">4.0dip</dimen>
     <dimen name="dialog_round_radius">4.0dip</dimen>
     <dimen name="smallButtonHeight">32.0dip</dimen>
     <dimen name="smallButtonWidth">48.0dip</dimen>

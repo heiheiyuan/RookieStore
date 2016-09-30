@@ -32,15 +32,15 @@
             android:layout_toRightOf="@id/drawee_view"
             android:layout_marginLeft="5dp"
             style="@style/ware_title"
-            android:text="联想笔记本"/>
+            />
         <TextView
             android:id="@+id/hot_goods_price_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignLeft="@id/hot_goods_title_tv"
-            android:layout_alignParentBottom="true"
+            android:layout_below="@id/hot_goods_title_tv"
             android:layout_marginTop="5dp"
-            android:text="$50"
+            android:layout_toRightOf="@id/drawee_view"
+            android:ellipsize="end"
             style="@style/ware_price"
             />
         <Button
@@ -48,9 +48,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:layout_alignBottom="@id/hot_goods_price_tv"
-            style="@style/bigRedButton"
-            android:gravity="center"
+            android:layout_alignParentBottom="true"
+            style="@style/smallRedButton"
             android:text="@string/buy_it"/>
     </RelativeLayout>
 </android.support.v7.widget.CardView>

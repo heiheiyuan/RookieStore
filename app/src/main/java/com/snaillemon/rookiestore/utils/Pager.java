@@ -1,6 +1,7 @@
 package com.snaillemon.rookiestore.utils;
 
 import android.content.Context;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.cjj.MaterialRefreshLayout;
@@ -16,21 +17,16 @@ import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
-
 /**
  * Created by GoodBoy on 9/28/2016.
  */
-
 public class Pager {
-
+    private static Builder builder;
     private final OkHttpHelper mHttpHelper;
     private static final int STATE_NORMAL = 0;
     private static final int STATE_REFRESH = 1;
     private static final int STATE_MORE = 2;
     private int mCurrState = STATE_NORMAL;
-    private static Builder builder;
-
     private Pager() {
         mHttpHelper = OkHttpHelper.getInstance();
         initRefreshLayout();
@@ -43,7 +39,7 @@ public class Pager {
         requestData();
     }
     public void putParams(String key,Object value) {
-        builder.putParmas(key,value);
+        builder.parmas.put(key,value);
     }
     private void initRefreshLayout() {
         builder.mRefreshLayout.setLoadMore(builder.mCanLoadMore);
@@ -55,18 +51,69 @@ public class Pager {
             }
             @Override
             public void onRefreshLoadMore(MaterialRefreshLayout materialRefreshLayout) {
-                if (builder.pageIndex < builder.totalPage){
+                if (builder.pageIndex <= builder.totalPage){
                     loadMore();
                 } else{
                     Toast.makeText(builder.mContext,"no more data",Toast.LENGTH_LONG).show();
                     materialRefreshLayout.finishRefreshLoadMore();
                     builder.mRefreshLayout.setLoadMore(false);
                 }
-
             }
         });
     }
-
+    /**
+     * request data
+     */
+    private void requestData() {
+        String url = buildUrl();
+        mHttpHelper.get(url,new RequestCallBack(builder.mContext));
+    }
+    /**
+     * show data
+     * @param datas
+     * @param totalPage
+     * @param totalCount
+     * @param <T>
+     */
+    private <T> void showData(List<T> datas, int totalPage, int totalCount) {
+        if (datas == null || datas.size() < 0){
+            Toast.makeText(builder.mContext,"can not load data",Toast.LENGTH_LONG).show();
+            return;
+        }
+        if (mCurrState == STATE_NORMAL) {
+            if (builder.mListener != null) {
+                builder.mListener.load(datas,totalPage,totalCount);
+            }
+        }
+        if (mCurrState == STATE_REFRESH) {
+            builder.mRefreshLayout.finishRefresh();
+            if (builder.mListener != null) {
+                builder.mListener.refresh(datas,totalPage,totalCount);
+            }
+        }
+        if (mCurrState == STATE_MORE) {
+            builder.mRefreshLayout.finishRefreshLoadMore();
+            if (builder.mListener != null) {
+                builder.mListener.loadMore(datas,totalPage,totalCount);
+            }
+        }
+    }
+    /**
+     * refresh data
+     */
+    private void refresh() {
+        mCurrState = STATE_REFRESH;
+        builder.pageIndex = 1;
+        requestData();
+    }
+    /**
+     * load more data
+     */
+    private void loadMore() {
+        mCurrState = STATE_MORE;
+        ++builder.pageIndex;
+        requestData();
+    }
     /**
      * get request url
      * @return
@@ -74,7 +121,6 @@ public class Pager {
     private String buildUrl() {
         return builder.mUrl + "?" + buildUrlParams();
     }
-
     /**
      * split url
      * @return
@@ -83,6 +129,7 @@ public class Pager {
         HashMap<String,Object> map = builder.parmas;
         map.put("curPage",builder.pageIndex);
         map.put("pageSize",builder.pageSize);
+        Log.e("TAG","curPage = " + builder.pageIndex + "---" + "pageSize" + builder.pageSize);
         StringBuffer sb = new StringBuffer();
         for (Map.Entry<String,Object> entry : map.entrySet()) {
             sb.append(entry.getKey() + "=" + entry.getValue());
@@ -94,30 +141,7 @@ public class Pager {
         }
         return s;
     }
-    /**
-     * request data
-     */
-    private void requestData() {
-        String url = buildUrl();
-        mHttpHelper.get(url,new RequestCallBack(builder.mContext));
-    }
-    /**
-     * load more data
-     */
-    private void loadMore() {
-        mCurrState = STATE_MORE;
-        builder.pageIndex = ++ builder.pageIndex;
-        requestData();
-    }
 
-    /**
-     * refresh data
-     */
-    private void refresh() {
-        mCurrState = STATE_REFRESH;
-        builder.pageIndex = 1;
-        requestData();
-    }
 
     public static class Builder {
         private Context mContext;
@@ -126,8 +150,8 @@ public class Pager {
         private MaterialRefreshLayout mRefreshLayout;
         private boolean mCanLoadMore;
         private int totalPage = 1;
-        private int pageSize = 10;
         private int pageIndex = 1;
+        private int pageSize = 10;
         private OnPageListener mListener;
         private HashMap<String,Object> parmas = new HashMap<>(5);
         public Builder setUrl(String url) {
@@ -160,7 +184,6 @@ public class Pager {
             valid();
             return new Pager();
         }
-
         private void valid() {
             if (this.mContext == null) {
                 throw new RuntimeException("context can not be null");
@@ -194,7 +217,6 @@ public class Pager {
                 builder.mRefreshLayout.finishRefreshLoadMore();
             }
         }
-
         @Override
         public void onFailure(Request request, IOException e) {
             dismissDialog();
@@ -203,37 +225,6 @@ public class Pager {
                 builder.mRefreshLayout.finishRefresh();
             }else if (mCurrState == STATE_MORE) {
                 builder.mRefreshLayout.finishRefreshLoadMore();
-            }
-        }
-    }
-
-    /**
-     * show data
-     * @param datas
-     * @param totalPage
-     * @param totalCount
-     * @param <T>
-     */
-    private <T> void showData(List<T> datas, int totalPage, int totalCount) {
-        if (datas == null || datas.size() < 0){
-            Toast.makeText(builder.mContext,"can not load data",Toast.LENGTH_LONG).show();
-            return;
-        }
-        if (mCurrState == STATE_NORMAL) {
-            if (builder.mListener != null) {
-                builder.mListener.load(datas,totalPage,totalCount);
-            }
-        }
-        if (mCurrState == STATE_REFRESH) {
-            builder.mRefreshLayout.finishRefresh();
-            if (builder.mListener != null) {
-                builder.mListener.refresh(datas,totalPage,totalCount);
-            }
-        }
-        if (mCurrState == STATE_MORE) {
-            builder.mRefreshLayout.finishRefreshLoadMore();
-            if (builder.mListener != null) {
-                builder.mListener.loadMore(datas,totalPage,totalCount);
             }
         }
     }
