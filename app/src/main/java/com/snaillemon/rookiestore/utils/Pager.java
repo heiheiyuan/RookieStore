@@ -141,8 +141,6 @@ public class Pager {
         }
         return s;
     }
-
-
     public static class Builder {
         private Context mContext;
         private Type mType;
