@@ -39,7 +39,7 @@ import com.squareup.okhttp.Response;
 import java.io.IOException;
 import java.util.List;
 
-import static com.snaillemon.rookiestore.adapter.decoration.DividerItemDecoration.VERTICAL_LIST;
+import static android.R.transition.move;
 
 /**
  * Created by prince on 2016/9/19.
@@ -66,7 +66,7 @@ public class CategoryFragment extends BaseFragment{
     private int pageSize = 10;
     private WaresAdapter mWaresAdapter;
     private int totalPage = 1;
-
+    private LinearLayoutManager mLinearLayoutManager;
     @Override
     public void init() {
         requestCategoryData();
@@ -191,6 +191,7 @@ public class CategoryFragment extends BaseFragment{
             }
         });
     }
+
     private void initSlider() {
         if (mBanners != null) {
             for (Banner bander : mBanners) {
@@ -206,6 +207,7 @@ public class CategoryFragment extends BaseFragment{
         mSliderLayout.setPresetTransformer(SliderLayout.Transformer.RotateUp);
         mSliderLayout.setDuration(3000);
     }
+
     private void requestCategoryData() {
         String url = Contants.API.CATEGORY_LIST;
         mHttpHelper.get(url, new SpotsCallback<List<Category>>(getContext()) {
@@ -227,27 +229,48 @@ public class CategoryFragment extends BaseFragment{
 
     private void showCategoryData(List<Category> datas) {
         mCategoryAdapter = new CategoryAdapter(getContext(), datas);
+        mLinearLayoutManager = new LinearLayoutManager(getContext());
         mCategoryAdapter.setOnItemClickListener(new BaseAdapter.OnItemClickListener() {
+
             @Override
             public void onItemClick(View view, int position) {
+                int middleCount = mLeftRecyclerView.getChildCount() / 2;
+                if (position == curPosition) return;
                 Category category = mCategoryAdapter.getItem(position);
                 category_Id = category.getId();
                 currPage = 1;
                 state = STATE_NORMAL;
-                if (position == curPosition) return;
                 requestWares(category_Id);
                 curPosition = position;
                 mCategoryAdapter.setSelectIndex(curPosition);
                 mCategoryAdapter.notifyDataSetChanged();
+                if (position > middleCount) {
+                    smoothMoveToPosition(position - middleCount,view);
+                }else {
+                    smoothMoveToPosition(0,view);
+                }
+
             }
         });
-
         mLeftRecyclerView.setAdapter(mCategoryAdapter);
-        mLeftRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        mLeftRecyclerView.setLayoutManager(mLinearLayoutManager);
         mLeftRecyclerView.setItemAnimator(new DefaultItemAnimator());
         mLeftRecyclerView.addItemDecoration(new DividerItemDecoration(getContext(),DividerItemDecoration.VERTICAL_LIST));
     }
-
+    private void smoothMoveToPosition(int n,View view) {
+        int firstItem = mLinearLayoutManager.findFirstVisibleItemPosition();
+        if (n > firstItem) {
+            //scroll up
+            mLeftRecyclerView.smoothScrollBy(0,mLeftRecyclerView.getChildAt(n - firstItem).getTop());
+        }else if (n <= firstItem){
+            //scroll down
+            if (n == 0) {
+                mLeftRecyclerView.smoothScrollBy(0,-view.getHeight() * (firstItem+1));
+            }else {
+                mLeftRecyclerView.smoothScrollBy(0,-view.getHeight());
+            }
+        }
+    }
     @Override
     public View createVew(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_category,container,false);
