@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <com.snaillemon.rookiestore.widget.SlToolbar
+        android:id="@+id/category_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        app:isShowSearchView="false"
+        app:title="分类"
+        />
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.v7.widget.RecyclerView
+            android:background="@color/white"
+            android:id="@+id/cate_left_recyclerview"
+            android:layout_width="90dp"
+            android:layout_height="match_parent">
+
+        </android.support.v7.widget.RecyclerView>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <com.daimajia.slider.library.SliderLayout
+                android:id="@+id/cate_sliderlayout"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_margin="5dp"/>
+            <com.cjj.MaterialRefreshLayout
+                android:id="@+id/cate_refresh"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:overlay="true"
+                app:wave_show="false">
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/cate_right_recyclerview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                />
+            </com.cjj.MaterialRefreshLayout>
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

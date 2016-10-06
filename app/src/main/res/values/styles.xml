@@ -5,6 +5,7 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimary</item>
         <item name="android:textColorPrimary">@color/white</item>
+        <item name="android:listDivider">@drawable/divider</item>
         <!--窗口的背景顏色-->
         <item name="android:windowBackground">@color/white</item>
         <item name="android:windowActionBar">false</item>

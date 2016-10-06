@@ -20,6 +20,8 @@ public abstract class BaseAdapter<T,H extends BaseViewHolder> extends RecyclerVi
     protected int layoutResId;
     protected List<T> datas;
     private OnItemClickListener mOnItemClickListener = null;
+
+
     public interface OnItemClickListener {
         void onItemClick(View view,int position);
     }
@@ -43,12 +45,16 @@ public abstract class BaseAdapter<T,H extends BaseViewHolder> extends RecyclerVi
         T item = getItem(position);
         convert((H)holder,item);
     }
-
     protected abstract void convert(H holder, T item);
 
     public T getItem(int position) {
         if (position >= datas.size()) return null;
         return datas.get(position);
+    }
+
+    @Override
+    public long getItemId(int position) {
+        return position;
     }
 
     @Override
