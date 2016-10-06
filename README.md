@@ -50,8 +50,7 @@ TODO://
     2.比较复杂,可以实现平滑滑动https://github.com/tyzlmjj/AndroidUI/tree/master/RecyclerViewLocation
     第二种方法相对复杂,需要判断好多种情况,并作出相应的操作,也研究了半天差不多明白了,但是用起来貌似不太适用于我,可能我不会用吧,哈哈哈哈
     所以我就自己写了一下,也并没有很复杂,只是做出了相应的判断,并且只用了smoothScrollBy这个方法,因为我发现最终生效的方法其实就是这个,那么到最后
-    我写出来的方法就是这样子的,好简单的:
-<br><code>
+    我写出来的方法就是这样子的,好简单的(好吧,其实是有bug的,整页条目显示出来会有一个item显示不全,导致在滑动的时候距离不准确):
 
 	private void smoothMoveToPosition(int n,View view) {
         int firstItem = mLinearLayoutManager.findFirstVisibleItemPosition();
@@ -61,14 +60,12 @@ TODO://
         }else if (n <= firstItem){
             //scroll down
             if (n == 0) {
-                mLeftRecyclerView.smoothScrollBy(0,-view.getHeight() * (firstItem+1));
+                mLeftRecyclerView.smoothScrollBy(0,-view.getHeight() * (firstItem + 1));
             }else {
-                mLeftRecyclerView.smoothScrollBy(0,-view.getHeight());
+                mLeftRecyclerView.smoothScrollBy(0,-view.getHeight() * (firstItem - n));
             }
         }
     }
-
-</code></p>
 
 --------------------------------------------------------------------------------------------
 --------------------------------------------------------------------------------------------

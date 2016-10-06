@@ -268,7 +268,7 @@ public class CategoryFragment extends BaseFragment{
             if (n == 0) {
                 mLeftRecyclerView.smoothScrollBy(0,-view.getHeight() * (firstItem+1));
             }else {
-                mLeftRecyclerView.smoothScrollBy(0,-view.getHeight());
+                mLeftRecyclerView.smoothScrollBy(0,-view.getHeight() * (firstItem - n));
             }
         }
     }
