@@ -248,7 +248,6 @@ public class CategoryFragment extends BaseFragment{
                     smoothMoveToPosition(position - middleCount,view);
                 }else {
                     smoothMoveToPosition(0,view);
-
                 }
 
             }
