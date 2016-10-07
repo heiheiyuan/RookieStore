@@ -70,6 +70,12 @@ TODO://
 --------------------------------------------------------------------------------------------
 --------------------------------------------------------------------------------------------
 #2016_09_28 Work Schedule
-国际化实现---internationalization
+国际化实现
+internationalization
 #2016_10_06 Work Schedule
-完成分类界面---complete interface of category
+完成分类界面
+completed interface of category
+#2016_10_07 Work Schedule
+完成购物车界面的自定义控件--商品数量,添加SharePreferenceUtils和JSONUtils工具类,并完成商品信息本地存储功能
+completed the custome view about control the count of wares,and add the tool class of SharePreferenceUtils and JSONUtils,
+one more thing is that completed the function of save wares information to local

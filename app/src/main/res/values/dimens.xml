@@ -30,4 +30,6 @@
     <dimen name="ware_img_width">100dp</dimen>
     <dimen name="ware_grid_img_width">60dp</dimen>
     <dimen name="ware_grid_img_height">60dp</dimen>
+    <dimen name="add_sub_size">26dp</dimen>
+    <dimen name="double_add_sub_size">45dp</dimen>
 </resources>
