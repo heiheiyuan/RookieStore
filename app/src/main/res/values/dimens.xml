@@ -13,7 +13,7 @@
     <dimen name="basicPaddingSize">4.0dip</dimen>
     <dimen name="inputEditTextMinHeight">32.0dip</dimen>
     <dimen name="searchViewMinHeight">45dip</dimen>
-    <dimen name="smallPadding">8.0dip</dimen>
+    <dimen name="smallPadding">10.0dip</dimen>
     <dimen name="largePadding">16.0dip</dimen>
     <dimen name="largerPadding">24.0dip</dimen>
     <dimen name="largestPadding">32.0dip</dimen>

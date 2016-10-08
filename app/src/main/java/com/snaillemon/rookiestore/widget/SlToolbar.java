@@ -57,22 +57,22 @@ public class SlToolbar extends Toolbar {
         }
     }
 
-    private void hideTitleView() {
+    public void hideTitleView() {
         if (mTextTitle != null) {
             mTextTitle.setVisibility(GONE);
         }
     }
-    private void showTitleView() {
+    public void showTitleView() {
         if (mTextTitle != null) {
             mTextTitle.setVisibility(VISIBLE);
         }
     }
-    private void showSearchView() {
+    public void showSearchView() {
         if (mSearchView != null) {
             mSearchView.setVisibility(VISIBLE);
         }
     }
-    private void hideSearchView() {
+    public void hideSearchView() {
         if (mSearchView != null) {
             mSearchView.setVisibility(GONE);
         }

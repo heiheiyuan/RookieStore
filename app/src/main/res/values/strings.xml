@@ -8,4 +8,11 @@
     <string name="title_activity_ware_detail">WareDetailActivity</string>
     <string name="share">分享</string>
     <string name="buy_it">立即购买</string>
+    <string name="delete">删除</string>
+    <string name="calculate">结算</string>
+    <string name="total">合计</string>
+    <string name="allcheck">全选</string>
+    <string name="cart_title">购物车</string>
+    <string name="edit">编辑</string>
+    <string name="complete">完成</string>
 </resources>

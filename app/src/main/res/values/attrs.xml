@@ -3,7 +3,7 @@
     <declare-styleable name="SlToolbar">
         <attr name="rightButtonIcon" format="reference"/>
         <attr name="isShowSearchView" format="boolean"/>
-        <attr name="rightButtonText" format="boolean"/>
+        <attr name="rightButtonText" format="string|reference"/>
     </declare-styleable>
     <declare-styleable name="NumberAddSubView">
         <attr name="value" format="integer|reference"/>

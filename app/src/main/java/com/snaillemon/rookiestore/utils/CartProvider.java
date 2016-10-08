@@ -65,7 +65,6 @@ public class CartProvider {
         if (json != null) {
             carts = JSONUtil.fromJson(json, new TypeToken<List<ShoppingCart>>() {}.getType());
         }
-
         return carts;
     }
     private void listToSparse() {

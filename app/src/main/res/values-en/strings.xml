@@ -9,4 +9,11 @@
     <string name="title_activity_ware_detail">WareDetailActivity</string>
     <string name="share">Share</string>
     <string name="buy_it">get it!</string>
+    <string name="delete">Delete</string>
+    <string name="calculate">Pay</string>
+    <string name="total">Price</string>
+    <string name="allcheck">All</string>
+    <string name="cart_title">Your Cart</string>
+    <string name="edit">Edit</string>
+    <string name="complete">Complete</string>
 </resources>
