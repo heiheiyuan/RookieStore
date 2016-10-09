@@ -13,6 +13,7 @@ import com.snaillemon.rookiestore.bean.ShoppingCart;
 import com.snaillemon.rookiestore.utils.CartProvider;
 import com.snaillemon.rookiestore.widget.NumberAddSubView;
 
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -40,7 +41,7 @@ public class CartAdapter extends SimpleAdapter<ShoppingCart> implements BaseAdap
             @Override
             public void onClick(View v) {
                 checkAll_None(mCheckBox.isChecked());
-
+                showTotalPrice();
             }
         });
     }
@@ -64,7 +65,7 @@ public class CartAdapter extends SimpleAdapter<ShoppingCart> implements BaseAdap
         SimpleDraweeView sdv = (SimpleDraweeView) holder.getView(R.id.item_ware_pic_sdv);
         sdv.setImageURI(Uri.parse(cart.getImgUrl()));
         holder.getTextView(R.id.item_ware_title_tv).setText(cart.getName());
-        holder.getTextView(R.id.item_ware_title_tv).setText("$" + cart.getPrice());
+        holder.getTextView(R.id.item_ware_price_tv).setText("$" + cart.getPrice());
         NumberAddSubView nasv = (NumberAddSubView) holder.getView(R.id.item_ware_addsub_btn);
         nasv.setValue(cart.getCount());
         nasv.setOnButtonClickListener(new NumberAddSubView.OnButtonClickListener() {
@@ -84,6 +85,7 @@ public class CartAdapter extends SimpleAdapter<ShoppingCart> implements BaseAdap
         cart.setCount(value);
         mProvider.update(cart);
         showTotalPrice();
+        notifyDataSetChanged();
     }
 
     public void showTotalPrice() {
@@ -110,6 +112,19 @@ public class CartAdapter extends SimpleAdapter<ShoppingCart> implements BaseAdap
 
     @Override
     public void onItemClick(View view, int position) {
+        // TODO: 10/9/2016
+    }
 
+    public void delWare() {
+        if (!notNull()) return;
+        for (Iterator<ShoppingCart> iterator = datas.iterator();iterator.hasNext();) {
+            ShoppingCart cart = iterator.next();
+            if (cart.isChecked()) {
+                int i = datas.indexOf(cart);
+                mProvider.delete(cart);
+                iterator.remove();
+                notifyItemRemoved(i);
+            }
+        }
     }
 }

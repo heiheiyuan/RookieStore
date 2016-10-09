@@ -89,9 +89,9 @@ public class SlToolbar extends Toolbar {
             addView(mView,lp);
         }
     }
-    public  void setRightButtonOnClickListener(OnClickListener li){
+    public  void setRightButtonOnClickListener(OnClickListener listener){
 
-        mRightButton.setOnClickListener(li);
+        mRightButton.setOnClickListener(listener);
     }
     public Button getRightButton(){
 

@@ -8,14 +8,13 @@
     android:layout_marginLeft="5dp"
     android:layout_marginRight="5dp"
     android:layout_marginTop="2dp"
-    app:cardBackgroundColor="#fff"
-    app:contentPadding="10dp"
+    app:cardBackgroundColor="@color/white"
     app:cardCornerRadius="4dp">
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/selector_list_item"
+        android:layout_height="match_parent"
         android:padding="10dp"
+        android:background="@drawable/selector_list_item"
         android:orientation="vertical">
         <com.facebook.drawee.view.SimpleDraweeView
             android:layout_width="@dimen/ware_grid_img_width"
@@ -31,7 +30,7 @@
             android:id="@+id/cate_text_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             style="@style/ware_title"
             android:text="海蕴诗 H-W001 蜗牛再生精华蚕丝面膜 （莹润嫩肤 深层补水）5片装/盒 30g*5"
             />
@@ -45,9 +44,8 @@
             android:id="@+id/cate_text_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
             android:layout_gravity="right"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="5dp"
             style="@style/ware_price"
             android:text="559.00"
             />

@@ -7,7 +7,9 @@ import android.widget.Button;
 
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.snaillemon.rookiestore.R;
+import com.snaillemon.rookiestore.bean.ShoppingCart;
 import com.snaillemon.rookiestore.bean.Wares;
+import com.snaillemon.rookiestore.utils.CartProvider;
 import com.snaillemon.rookiestore.utils.ToastUtils;
 
 import java.util.List;
@@ -17,20 +19,23 @@ import java.util.List;
  */
 
 public class HWAdpater extends SimpleAdapter<Wares>{
+    private CartProvider mProvider;
     public HWAdpater(Context context,List<Wares> list) {
         super(context, R.layout.template_hot_cardview, list);
+        mProvider = new CartProvider(context);
     }
     @Override
-    protected void convert(BaseViewHolder holder, Wares item) {
+    protected void convert(BaseViewHolder holder, final Wares ware) {
         SimpleDraweeView draweeView = (SimpleDraweeView) holder.getView(R.id.drawee_view);
-        draweeView.setImageURI(Uri.parse(item.getImgUrl()));
-        holder.getTextView(R.id.hot_goods_title_tv).setText(item.getName());
-        holder.getTextView(R.id.hot_goods_price_tv).setText("￥ " + item.getPrice());
+        draweeView.setImageURI(Uri.parse(ware.getImgUrl()));
+        holder.getTextView(R.id.hot_goods_title_tv).setText(ware.getName());
+        holder.getTextView(R.id.hot_goods_price_tv).setText("￥ " + ware.getPrice());
         Button button = holder.getButtonView(R.id.hot_buy_btn);
         if (button != null) {
             button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    mProvider.put(ware);
                     ToastUtils.show(mContext,"Added to Cart");
                 }
             });

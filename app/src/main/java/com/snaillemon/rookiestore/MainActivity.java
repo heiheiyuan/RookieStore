@@ -2,6 +2,7 @@ package com.snaillemon.rookiestore;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,9 +20,10 @@ import com.snaillemon.rookiestore.fragment.MineFragment;
 import com.snaillemon.rookiestore.widget.FragmentTabHost;
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements TabHost.OnTabChangeListener {
     private FragmentTabHost mTabHost;
     private LayoutInflater mInflater;
+    private CartFragment mCartFragment;
     private ArrayList<Tab> mTabList = new ArrayList<>(5);
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +58,7 @@ public class MainActivity extends AppCompatActivity {
         }
         //remove divider
         //mTabHost.getTabWidget().setShowDividers(LinearLayout.SHOW_DIVIDER_NONE);
+        mTabHost.setOnTabChangedListener(this);
         mTabHost.setCurrentTab(0);
     }
     @NonNull
@@ -67,5 +70,23 @@ public class MainActivity extends AppCompatActivity {
         iconIv.setBackgroundResource(tab.getIcon());
         textTv.setText(tab.getTitle());
         return view;
+    }
+
+    @Override
+    public void onTabChanged(String tabId) {
+        if (tabId.equals(getString(R.string.cart))) refrshCartData();
+    }
+
+    private void refrshCartData() {
+        if (mCartFragment == null) {
+            Fragment fragment = getSupportFragmentManager().findFragmentByTag(getString(R.string.cart));
+            if (fragment != null) {
+                mCartFragment = (CartFragment) fragment;
+                mCartFragment.refreshData();
+            }
+        }else {
+            mCartFragment.refreshData();
+        }
+
     }
 }

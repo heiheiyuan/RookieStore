@@ -24,7 +24,7 @@ public class NumberAddSubView extends LinearLayout implements View.OnClickListen
     private TextView mWaresNumTv;
     private int value = 1;
     private int minValue = 1;
-    private int maxValue;
+    private int maxValue = 100;
     private OnButtonClickListener mListener;
 
     public NumberAddSubView(Context context) {
@@ -42,10 +42,10 @@ public class NumberAddSubView extends LinearLayout implements View.OnClickListen
         if (attrs != null) {
             //get and set custom attribute
             TintTypedArray a = TintTypedArray.obtainStyledAttributes(context,attrs,R.styleable.NumberAddSubView,defStyleAttr,0);
-            value = a.getInt(R.styleable.NumberAddSubView_value, 0);
+            value = a.getInt(R.styleable.NumberAddSubView_value, 1);
             setValue(value);
             mWaresNumTv.setText(String.valueOf(value));
-            maxValue = a.getInt(R.styleable.NumberAddSubView_maxValue,0);
+            maxValue = a.getInt(R.styleable.NumberAddSubView_maxValue,maxValue);
             setMaxValue(maxValue);
             minValue = a.getInt(R.styleable.NumberAddSubView_minValue,0);
             setMinValue(minValue);
