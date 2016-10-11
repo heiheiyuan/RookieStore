@@ -23,7 +23,6 @@
         android:textColor="@color/black"
         android:layout_gravity="center"
         android:padding="1dp"
-        android:text="1"
         android:gravity="center"/>
     <Button
         android:id="@+id/addView_btn"

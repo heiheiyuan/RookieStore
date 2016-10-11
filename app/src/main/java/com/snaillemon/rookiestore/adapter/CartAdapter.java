@@ -20,8 +20,11 @@ import java.util.List;
  * Created by GoodBoy on 10/8/2016.
  */
 public class CartAdapter extends SimpleAdapter<ShoppingCart> implements BaseAdapter.OnItemClickListener{
+
     private TextView mTotalPriceTv;
+
     private CheckBox mCheckBox;
+
     private final CartProvider mProvider;
 
     public CartAdapter(Context context, List<ShoppingCart> carts, CheckBox checkBox, TextView totalPriceTv) {
@@ -61,13 +64,21 @@ public class CartAdapter extends SimpleAdapter<ShoppingCart> implements BaseAdap
     @Override
     protected void convert(BaseViewHolder holder, final ShoppingCart cart) {
         CheckBox cb = (CheckBox) holder.getView(R.id.item_ware_checkbox);
+
         cb.setChecked(cart.isChecked());
+
         SimpleDraweeView sdv = (SimpleDraweeView) holder.getView(R.id.item_ware_pic_sdv);
+
         sdv.setImageURI(Uri.parse(cart.getImgUrl()));
+
         holder.getTextView(R.id.item_ware_title_tv).setText(cart.getName());
+
         holder.getTextView(R.id.item_ware_price_tv).setText("$" + cart.getPrice());
+
         NumberAddSubView nasv = (NumberAddSubView) holder.getView(R.id.item_ware_addsub_btn);
+
         nasv.setValue(cart.getCount());
+
         nasv.setOnButtonClickListener(new NumberAddSubView.OnButtonClickListener() {
             @Override
             public void onBttonAddClick(View view, int value) {

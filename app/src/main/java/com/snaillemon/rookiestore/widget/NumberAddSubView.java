@@ -20,11 +20,17 @@ import com.snaillemon.rookiestore.R;
 
 public class NumberAddSubView extends LinearLayout implements View.OnClickListener{
     private LayoutInflater mLayoutInflater;
+
     private Button mAddBtn,mSubBtn;
+
     private TextView mWaresNumTv;
+
     private int value = 1;
+
     private int minValue = 1;
+
     private int maxValue = 100;
+
     private OnButtonClickListener mListener;
 
     public NumberAddSubView(Context context) {
@@ -42,19 +48,33 @@ public class NumberAddSubView extends LinearLayout implements View.OnClickListen
         if (attrs != null) {
             //get and set custom attribute
             TintTypedArray a = TintTypedArray.obtainStyledAttributes(context,attrs,R.styleable.NumberAddSubView,defStyleAttr,0);
+
             value = a.getInt(R.styleable.NumberAddSubView_value, 1);
+
             setValue(value);
+
             mWaresNumTv.setText(String.valueOf(value));
+
             maxValue = a.getInt(R.styleable.NumberAddSubView_maxValue,maxValue);
+
             setMaxValue(maxValue);
+
             minValue = a.getInt(R.styleable.NumberAddSubView_minValue,0);
+
             setMinValue(minValue);
+
             Drawable drawableAdd = a.getDrawable(R.styleable.NumberAddSubView_btnAddBackground);
+
             Drawable drawableSub = a.getDrawable(R.styleable.NumberAddSubView_btnSubBackground);
+
             Drawable drawableTxt = a.getDrawable(R.styleable.NumberAddSubView_textViewBackground);
+
             if (drawableAdd != null) setAddBtnBackground(drawableAdd);
+
             if (drawableSub != null) setSubBtnBackground(drawableSub);
+
             if (drawableTxt != null) setTxtBtnBackground(drawableTxt);
+
             a.recycle();
         }
     }
@@ -74,6 +94,7 @@ public class NumberAddSubView extends LinearLayout implements View.OnClickListen
     public void setOnButtonClickListener(OnButtonClickListener listener) {
         mListener = listener;
     }
+
     private void initView() {
         View view = mLayoutInflater.inflate(R.layout.widget_number_add_sub_view, this, true);
         mAddBtn = (Button) view.findViewById(R.id.addView_btn);
@@ -93,6 +114,7 @@ public class NumberAddSubView extends LinearLayout implements View.OnClickListen
 
     public void setValue(int value) {
         this.value = value;
+        mWaresNumTv.setText(String.valueOf(value));
     }
 
     public int getMinValue() {
@@ -128,14 +150,17 @@ public class NumberAddSubView extends LinearLayout implements View.OnClickListen
             }
         }
     }
+
     public void numAdd() {
         if (value < maxValue) value++;
         mWaresNumTv.setText(String.valueOf(value));
     }
+
     public void numSub() {
         if (value > minValue) value--;
         mWaresNumTv.setText(String.valueOf(value));
     }
+
     public interface OnButtonClickListener {
         void onBttonAddClick(View view,int value);
         void onBttonSubClick(View view,int value);
