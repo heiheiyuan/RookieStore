@@ -22,7 +22,7 @@ public class HWAdpater extends SimpleAdapter<Wares>{
     private CartProvider mProvider;
     public HWAdpater(Context context,List<Wares> list) {
         super(context, R.layout.template_hot_cardview, list);
-        mProvider = new CartProvider(context);
+        mProvider = CartProvider.getInstance(context);
     }
     @Override
     protected void convert(BaseViewHolder holder, final Wares ware) {

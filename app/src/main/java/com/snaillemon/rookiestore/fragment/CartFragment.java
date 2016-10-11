@@ -43,10 +43,11 @@ public class CartFragment extends BaseFragment implements View.OnClickListener {
     private Button mDelBtn;
     private CartProvider mProvider;
     private CartAdapter mAdapter;
+    private List<ShoppingCart> mDelWare;
 
     @Override
     public void init() {
-        mProvider = new CartProvider(getContext());
+        mProvider = CartProvider.getInstance(getContext());
         initEvents();
         showData();
     }
@@ -85,7 +86,7 @@ public class CartFragment extends BaseFragment implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.cart_del_btn:
-                mAdapter.delWare();
+                mDelWare = mAdapter.delWare();
                 break;
             case R.id.cart_calculate_btn:
                 // TODO: 10/9/2016 pay activity
@@ -96,6 +97,7 @@ public class CartFragment extends BaseFragment implements View.OnClickListener {
                     showDelControl();
                 }else if (action == ACTION_COMPLETE) {
                     hideDelControl();
+                    delLocalWares();
                 }
                 break;
         }
@@ -116,6 +118,15 @@ public class CartFragment extends BaseFragment implements View.OnClickListener {
         mCheckBox.setChecked(true);
     }
 
+    private void delLocalWares() {
+        if (mDelWare != null && mDelWare.size() > 0) {
+            for (int i = 0; i < mDelWare.size(); i++) {
+                ShoppingCart cart = mDelWare.get(i);
+                mProvider.delete(cart);
+            }
+        }
+    }
+
     /**
      * edit mode
      */
@@ -132,6 +143,8 @@ public class CartFragment extends BaseFragment implements View.OnClickListener {
 
     public void refreshData() {
         mAdapter.clear();
+        initToolbar();
+        hideDelControl();
         List<ShoppingCart> datas = mProvider.getAll();
         mAdapter.addDatas(datas);
         mAdapter.showTotalPrice();

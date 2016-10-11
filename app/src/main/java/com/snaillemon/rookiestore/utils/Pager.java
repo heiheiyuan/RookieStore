@@ -54,7 +54,7 @@ public class Pager {
                 if (builder.pageIndex <= builder.totalPage){
                     loadMore();
                 } else{
-                    Toast.makeText(builder.mContext,"no more data",Toast.LENGTH_LONG).show();
+                    Toast.makeText(builder.mContext,"No More Data",Toast.LENGTH_LONG).show();
                     materialRefreshLayout.finishRefreshLoadMore();
                     builder.mRefreshLayout.setLoadMore(false);
                 }
@@ -77,7 +77,7 @@ public class Pager {
      */
     private <T> void showData(List<T> datas, int totalPage, int totalCount) {
         if (datas == null || datas.size() < 0){
-            Toast.makeText(builder.mContext,"can not load data",Toast.LENGTH_LONG).show();
+            Toast.makeText(builder.mContext,"Can Not Load Data",Toast.LENGTH_LONG).show();
             return;
         }
         if (mCurrState == STATE_NORMAL) {

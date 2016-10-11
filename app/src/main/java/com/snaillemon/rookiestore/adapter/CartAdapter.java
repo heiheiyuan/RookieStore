@@ -13,6 +13,7 @@ import com.snaillemon.rookiestore.bean.ShoppingCart;
 import com.snaillemon.rookiestore.utils.CartProvider;
 import com.snaillemon.rookiestore.widget.NumberAddSubView;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -31,7 +32,7 @@ public class CartAdapter extends SimpleAdapter<ShoppingCart> implements BaseAdap
         super(context, R.layout.template_cart,carts);
         setCheckBox(checkBox);
         setTextView(totalPriceTv);
-        mProvider = new CartProvider(context);
+        mProvider = CartProvider.getInstance(context);
     }
 
     private void setTextView(TextView totalPriceTv) {
@@ -63,9 +64,18 @@ public class CartAdapter extends SimpleAdapter<ShoppingCart> implements BaseAdap
 
     @Override
     protected void convert(BaseViewHolder holder, final ShoppingCart cart) {
-        CheckBox cb = (CheckBox) holder.getView(R.id.item_ware_checkbox);
+        final CheckBox cb = (CheckBox) holder.getView(R.id.item_ware_checkbox);
 
         cb.setChecked(cart.isChecked());
+
+        cb.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                cart.setChecked(!cart.isChecked());
+                cb.setChecked(cart.isChecked());
+                updatePrice(cart.getCount(),cart);
+            }
+        });
 
         SimpleDraweeView sdv = (SimpleDraweeView) holder.getView(R.id.item_ware_pic_sdv);
 
@@ -126,16 +136,18 @@ public class CartAdapter extends SimpleAdapter<ShoppingCart> implements BaseAdap
         // TODO: 10/9/2016
     }
 
-    public void delWare() {
-        if (!notNull()) return;
+    public List<ShoppingCart> delWare() {
+        List<ShoppingCart> delList = new ArrayList<>();
+        if (!notNull()) return null;
         for (Iterator<ShoppingCart> iterator = datas.iterator();iterator.hasNext();) {
             ShoppingCart cart = iterator.next();
             if (cart.isChecked()) {
                 int i = datas.indexOf(cart);
-                mProvider.delete(cart);
+                delList.add(cart);
                 iterator.remove();
                 notifyItemRemoved(i);
             }
         }
+        return delList;
     }
 }

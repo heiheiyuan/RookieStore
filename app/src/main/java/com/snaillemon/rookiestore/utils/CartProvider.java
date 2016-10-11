@@ -8,7 +8,6 @@ import com.google.gson.reflect.TypeToken;
 import com.snaillemon.rookiestore.bean.ShoppingCart;
 import com.snaillemon.rookiestore.bean.Wares;
 
-import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,12 +20,16 @@ public class CartProvider {
 
     private SparseArray<ShoppingCart> datas = null;
 
-    private Context mContext;
+    private static Context sContext;
 
-    public CartProvider(Context context) {
-        mContext = context;
+    private CartProvider() {
         datas = new SparseArray<>(10);
         listToSparse();
+    }
+
+    public static CartProvider getInstance(Context context) {
+        sContext = context;
+        return CartProviderHolder.sInstance;
     }
 
     public void put(ShoppingCart cart) {
@@ -66,7 +69,7 @@ public class CartProvider {
 
     public void commit() {
         List<ShoppingCart> carts = sparseToList();
-        PreferenceUtils.putString(mContext,CART_JSON,JSONUtil.toJSON(carts));
+        PreferenceUtils.putString(sContext,CART_JSON,JSONUtil.toJSON(carts));
         Log.e("CartProvider","commit:json-----------" + JSONUtil.toJSON(carts));
     }
 
@@ -93,7 +96,7 @@ public class CartProvider {
     }
 
     public List<ShoppingCart> getDataFromLocal() {
-        String json = PreferenceUtils.getString(mContext, CART_JSON);
+        String json = PreferenceUtils.getString(sContext, CART_JSON);
         List<ShoppingCart> carts = null;
         if (json != null) {
             carts = JSONUtil.fromJson(json, new TypeToken<List<ShoppingCart>>() {}.getType());
@@ -109,5 +112,9 @@ public class CartProvider {
         cart.setName(ware.getName());
         cart.setPrice(ware.getPrice());
         return cart;
+    }
+
+    private static class CartProviderHolder {
+        private static final CartProvider sInstance = new CartProvider();
     }
 }
