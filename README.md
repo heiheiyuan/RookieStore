@@ -93,3 +93,5 @@ completed interface of category
 完成购物车界面的自定义控件--商品数量,添加SharePreferenceUtils和JSONUtils工具类,并完成商品信息本地存储功能
 completed the custome view about control the count of wares,and add the tool class of SharePreferenceUtils and JSONUtils,
 one more thing is that completed the function of save wares information to local
+#2016_10_11 Work Schedule
+购物车界面完成:商品价格结算 编辑 商品数量控制 数据刷新 数据信息错误BUG解决
