@@ -1,6 +1,7 @@
 package com.snaillemon.rookiestore.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.text.Html;
 import android.view.View;
@@ -9,7 +10,10 @@ import android.widget.TextView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.snaillemon.rookiestore.R;
+import com.snaillemon.rookiestore.WaresDetailsActivity;
+import com.snaillemon.rookiestore.bean.Contants;
 import com.snaillemon.rookiestore.bean.ShoppingCart;
+import com.snaillemon.rookiestore.bean.Wares;
 import com.snaillemon.rookiestore.utils.CartProvider;
 import com.snaillemon.rookiestore.widget.NumberAddSubView;
 
@@ -17,10 +21,12 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import static com.snaillemon.rookiestore.R.string.cart;
+
 /**
  * Created by GoodBoy on 10/8/2016.
  */
-public class CartAdapter extends SimpleAdapter<ShoppingCart> implements BaseAdapter.OnItemClickListener{
+public class CartAdapter extends SimpleAdapter<ShoppingCart>{
 
     private TextView mTotalPriceTv;
 
@@ -131,11 +137,6 @@ public class CartAdapter extends SimpleAdapter<ShoppingCart> implements BaseAdap
         return (datas != null && datas.size() > 0);
     }
 
-    @Override
-    public void onItemClick(View view, int position) {
-        // TODO: 10/9/2016
-    }
-
     public List<ShoppingCart> delWare() {
         List<ShoppingCart> delList = new ArrayList<>();
         if (!notNull()) return null;
@@ -149,5 +150,25 @@ public class CartAdapter extends SimpleAdapter<ShoppingCart> implements BaseAdap
             }
         }
         return delList;
+    }
+
+    /**
+     * update state of check box
+     */
+    public void updateCheckBox() {
+        if (datas != null) {
+            int count = datas.size();
+            int checkNum = 0;
+            for (int i = 0; i < count; i++) {
+                if (!datas.get(i).isChecked()) {
+                    mCheckBox.setChecked(false);
+                }else {
+                    checkNum ++;
+                }
+            }
+            if (checkNum == count) {
+                mCheckBox.setChecked(true);
+            }
+        }
     }
 }

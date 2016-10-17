@@ -12,6 +12,28 @@ If there are some bug or places you can make it better,please tell me!!!Thank yo
 只是为了找到一个好工作而已
 如果有bug或者一些地方可以改进的,请一定要告诉我啊!!!非常感谢!
 
+---------------------------------------------------------------------
+# 先瞅瞅目前做的效果图咯：
+</br>
+<div align=center>
+<img src="http://i.imgur.com/ApuJ9SJ.jpg" width=256/></br>
+HomeFragment
+</div>
+</br>
+<div align=center>
+<img src="http://i.imgur.com/UtrvsHG.jpg" width=256/></br>
+HotFragment
+</div>
+</br>
+<div align=center>
+<img src="http://i.imgur.com/g0n7awQ.jpg" width=256/></br>
+CategoryFragment
+</div>
+</br>
+<div align=center>
+<img src="http://i.imgur.com/1D2yUyo.jpg" width=256/></br>
+CartFragment
+</div>
 
 -------------------------------------------------------------------------------------------
 -------------------------------------------------------------------------------------------

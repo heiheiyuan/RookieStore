@@ -33,6 +33,7 @@
         android:textColor="@color/white"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
+        android:layout_marginRight="10dp"
         style="@android:style/Widget.Material.Toolbar.Button.Navigation"
         android:visibility="gone"
         />
