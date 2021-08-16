@@ -66,10 +66,10 @@ TODO://
 一下午搞定了一个功能...虽然一直知道自己的智商不够高,但是今天才发现!!!这tm的也太低了吧
 京东的分类界面大家都知道,左侧的lv或者rv是可以根据具体的点击item位置来自动滑动的,然后呢我用的是rv,很天真的以为直接用scrollToPosition
 就可以解决,结果并没有什么卵用,他竟然不动,所以上网找了好几个人的思路:
-    1.简单实现,但是不可以平滑的滑动
+    1. 简单实现,但是不可以平滑的滑动
             mLinearLayoutManager.setStackFromEnd(true);
             mLinearLayoutManager.scrollToPositionWithOffset(pos,0);
-    2.比较复杂,可以实现平滑滑动https://github.com/tyzlmjj/AndroidUI/tree/master/RecyclerViewLocation
+    2. 比较复杂,可以实现平滑滑动https://github.com/tyzlmjj/AndroidUI/tree/master/RecyclerViewLocation
     第二种方法相对复杂,需要判断好多种情况,并作出相应的操作,也研究了半天差不多明白了,但是用起来貌似不太适用于我,可能我不会用吧,哈哈哈哈
     所以我就自己写了一下,也并没有很复杂,只是做出了相应的判断,并且只用了smoothScrollBy这个方法,因为我发现最终生效的方法其实就是这个,那么到最后
     我写出来的方法就是这样子的,好简单的(好吧,其实是有bug的,整页条目显示出来会有一个item显示不全,导致在滑动的时候距离不准确):
@@ -96,12 +96,9 @@ TODO://
 一开始把商品删除所有之后再次任意添加一个商品 切换到购物车界面后之前删掉的又会出现 新添加的也在里面 
 
 通过调试和打Log之后发现这是一个逻辑上的问题:
-
-    1.CartProvider没有使用单例模式,所以在HWAdapter和CartAdapter中的两个CartProvider对象不是同
-    一个对象,意味着两个对象中的datas中的数据并没有同步,因此在没有改造成但是模式的情况下可以再put操
-    作前使用listToSparse方法重新更新一下datas中的数据,并且将listTosparse方法稍作修改,当一键删除
-    所有商品后list.size() = 0,所以里面的方法不会执行到,意味着datas不会发生变化,加个else将执行datas.clear()即可!
-    2.完全可以使用单例模式来解决,这样就很轻松的达到数据同步的效果
+1. CartProvider没有使用单例模式,所以在HWAdapter和CartAdapter中的两个CartProvider对象不是同一个对象,意味着两个对象中的datas中的数据并没有同步,因此在没有改造成但是模式的情况下可以再put操
+作前使用listToSparse方法重新更新一下datas中的数据,并且将listTosparse方法稍作修改,当一键删除所有商品后list.size() = 0,所以里面的方法不会执行到,意味着datas不会发生变化,加个else将执行datas.clear()即可!
+2. 完全可以使用单例模式来解决,这样就很轻松的达到数据同步的效果
 
 --------------------------------------------------------------------------------------------
 --------------------------------------------------------------------------------------------
