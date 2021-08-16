@@ -37,7 +37,7 @@ CartFragment
 
 -------------------------------------------------------------------------------------------
 -------------------------------------------------------------------------------------------
-#哇咔咔 firsht issue
+# 哇咔咔 first issue
 之前添加的remadme.txt文件是直接在github上写的 也没有同步到本地,之后在提交代码的时候出现这个
 error: failed to push some refs to 'https://github.com/aniruddhabarapatre/learn-rails.git'
 hint: Updates were rejected because the remote contains work that you do
@@ -51,7 +51,7 @@ Fix any merge conflicts, if you have a `README.md` locally
 git push -u origin master
 是不是so easy~自言自语好无聊╮(╯_╰)╭
 
-#哇咔咔 second issue
+# 哇咔咔 second issue
 源代码里面提供了recyclerview分割线的类,但是并没有使用,于是百度了一下结果发现代码和网上的一模一样=_=
 使用起来呢其实也挺简单的,不过还是遇到了一些小问题
 中规中矩的按照步骤一步一步的做,结果并没有出现,后来知道需要给item布局加margin,不然在画线的时候会被item布局覆盖掉,
@@ -62,7 +62,7 @@ TODO://
 看了京东的客户端你会发现当他们的item超过middle position时,条目会自动上移,跳回前几个item时他又会跳回来
 我以为直接做个判断然后调用scrollToPosition方法,结果没效果,因为这个方法不是很了解啊,所以还得研究一下咯
 
-#哇咔咔 third issue
+# 哇咔咔 third issue
 一下午搞定了一个功能...虽然一直知道自己的智商不够高,但是今天才发现!!!这tm的也太低了吧
 京东的分类界面大家都知道,左侧的lv或者rv是可以根据具体的点击item位置来自动滑动的,然后呢我用的是rv,很天真的以为直接用scrollToPosition
 就可以解决,结果并没有什么卵用,他竟然不动,所以上网找了好几个人的思路:
@@ -89,7 +89,7 @@ TODO://
         }
     }
 
-#哇咔咔 fourth issue
+# 哇咔咔 fourth issue
 
 购物车的基本功能已经实现了,但是遇到一个bug
 
@@ -105,15 +105,15 @@ TODO://
 
 --------------------------------------------------------------------------------------------
 --------------------------------------------------------------------------------------------
-#2016_09_28 Work Schedule
+# 2016_09_28 Work Schedule
 国际化实现
 internationalization
-#2016_10_06 Work Schedule
+# 2016_10_06 Work Schedule
 完成分类界面
 completed interface of category
-#2016_10_07 Work Schedule
+# 2016_10_07 Work Schedule
 完成购物车界面的自定义控件--商品数量,添加SharePreferenceUtils和JSONUtils工具类,并完成商品信息本地存储功能
 completed the custome view about control the count of wares,and add the tool class of SharePreferenceUtils and JSONUtils,
 one more thing is that completed the function of save wares information to local
-#2016_10_11 Work Schedule
+# 2016_10_11 Work Schedule
 购物车界面完成:商品价格结算 编辑 商品数量控制 数据刷新 数据信息错误BUG解决
