@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+  <string-array name="tab_names">
+    <item>测试1</item>
+    <item></item>
+    <item></item>
+    <item></item>
+    <item></item>
+    <item></item>
+    <item></item>
+  </string-array>
+  <string name="app_name"></string>
+  <string name="action_settings"></string>
+  <string name="user_name"></string>
+  <string name="user_mail"></string>
+  <string name="sliding_home"></string>
+  <string name="setting"></string>
+  <string name="theme"></string>
+  <string name="apk_manager"></string>
+  <string name="feed_back"></string>
+  <string name="about"></string>
+  <string name="exit"></string>
+  <string name="error_des"></string>
+  <string name="app_des"></string>
+  <string name="app_name_str"></string>
+  <string name="app_size"></string>
+  <string name="isdownload"></string>
+</resources>
